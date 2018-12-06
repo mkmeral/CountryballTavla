@@ -8,10 +8,10 @@
     
 </head>
 <body>
-    <section id = "top left">
-        <div id = "decoration top left">
-            <img src= "../public/images/logo.jpg" alt="The Earth Flag">
-            <h1> <span class = "title">Countryball Backgammon</span>
+    <section id="top left">
+        <div id="decoration top left">
+            <img src="../public/images/EarthCountryball.png" alt="The Earth Flag">
+            <h1> <span class="title">Countryball Backgammon</span>
             </h1>          
         </div>
     </section>
@@ -28,24 +28,24 @@
     <section id = "right">
         <div id = "choosing country">
             <form action="/leftselection" method="get">
-             <button type="submit" class="choose">previous</button>
+             <button type="submit" class="choose" id="previous">previous</button>
             </form>
+            <img src="<%= defaultImage %>" class="choose">
             <form action="/rightselection" method="get">
-                <button type="submit" class="choose">next</button>
+                <button type="submit" class="choose" id="next">next</button>
             </form>
         </div>
-        <div id = "play and how to play">
+        <div id="play and how to play">
             <form action="/start" method="get">
-                <span class="button2"><button type="submit">Play</button></span>
+                <button type="submit" class="primary" id="play">Play</button>
             </form>
             <form action="/howtoplay" method="get">
-                <span class="button2"><button type="submit">How To Play</button></span>
+                <button type="submit" class="primary" id="howto">How To Play</button>
             </form>
         </div>
     </section>
-        
-    
-    
-
+    <div class="modal">
+        <? modal ?>
+    </div>
 </body>
 </html>

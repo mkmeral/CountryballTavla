@@ -7,7 +7,7 @@
 <body>
     <header>
         <div class="opponent">
-            <img src="" onclick="">
+            <img src="../public/images/<% first %>" onclick="">
             <h5>PIPS: </h5>
         </div>
         <div class="center">
@@ -15,7 +15,7 @@
             <h5></h5>
         </div>
         <div class="user">
-            <img src="" onclick="">
+            <img src="../public/images/<? second ?>" onclick="">
             <h5>PIPS: </h5>
         </div>
     </header>
@@ -193,5 +193,19 @@
             </div>
         </section>
     </main>
+    <div class="modal" id="talks">
+        <% talks.foreach(function(talk){ %>
+            <div class="talk" onclick="sendTalk(<% talk.id %>)">
+                <h3><% talk.text %></h3>
+            </div>
+        <% }) %>
+        <button type="submit" class="exit" name="exit">Exit</button>
+    </div>
+    <div class="modal" id="message">
+    </div>
+    <div class="modal" id="dice">
+        <img src="" id="first" class="membrane">
+        <img src="" id="second" class="membrane">
+    </div>
 </body>
 </html>
