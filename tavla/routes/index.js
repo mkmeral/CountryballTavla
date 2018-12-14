@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('splash', { title: 'Express' });
+  res.render('splash', { defaultImage: '/images/EarthCountryball.png' });
 });
 
 module.exports = router;
