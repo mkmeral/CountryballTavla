@@ -32,6 +32,43 @@
     };
 
     /*
+     * Server to Client : Waiting for another player
+     */
+    exports.T_WAIT = "WAIT";
+    exports.O_WAIT = {
+        type: exports.T_WAIT
+    };
+    exports.S_WAIT = JSON.stringify(exports.O_WAIT);
+
+    /*
+     * Server to Client : The move is invalid!
+     */
+    exports.T_INVALID = "INVALID";
+    exports.O_INVALID = {
+        type: exports.T_INVALID
+    };
+    exports.S_INVALID = JSON.stringify(exports.O_INVALID);
+
+    /*
+     * Server to Client: Game is ready
+     * If player is to start, data will contain dice info
+     */
+    exports.T_READY = "READY";
+    exports.O_READY = {
+        type: exports.T_READY,
+        data: null
+    };
+
+    /*
+     * Client to Server: Surrender
+     */
+    exports.T_SURRENDER = "SURRENDER";
+    exports.O_SURRENDER = {
+        type: exports.T_SURRENDER
+    };
+    exports.S_SURRENDER = JSON.stringify(exports.O_SURRENDER);
+
+    /*
      * InApp Messaging, with limited options in this array
      */
     exports.MESSAGES = [
