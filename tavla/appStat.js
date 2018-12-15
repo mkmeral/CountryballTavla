@@ -1,6 +1,7 @@
-module.exports.appInfo = {
+exports.appInfo = {
     searchingPlayer : 0,
-    games : [],
+    games : 0,
+    websockets : {},
     waitTime : [],
     waitlist : [],
 };

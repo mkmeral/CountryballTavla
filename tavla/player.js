@@ -1,6 +1,6 @@
 var Board = require('./board.js');
-exports = function (id, country) {
-    this.id = id;
+exports = function (con, country) {
+    this.con = con;
     this.country = country;
     this.board = new Board();
 };
