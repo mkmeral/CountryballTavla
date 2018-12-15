@@ -1,4 +1,5 @@
 var websocket = require("ws");
+var http = require('http');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var stats =  require('./appStat.js');
 var indexRouter = require('./routes/index');
-var Game = require('./tavla');
+var Game = require('./tavla').game;
 var PlayerClass = require('./player.js');
 var app = express();
 port = process.argv[2];

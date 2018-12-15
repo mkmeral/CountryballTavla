@@ -4,9 +4,6 @@ var board = function () {
     this.moves=[];    // {from: x, to: y} or {message: x, played: false};
 };
 
-this.id = id;
-this.country = country;
-this.board = board;
 /*
     Check if the move is valid based on dice outcome
  */
