@@ -74,6 +74,9 @@ body {
 .primary:hover{
   background-color: bisque;  
 }
+.stat{
+    display: inline;
+}
 #howto:hover{
     cursor: help;
 }
