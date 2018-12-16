@@ -9,7 +9,7 @@
         "at.png","ca.png","es.png","in.png",
         "jp.png","pl.png","ru.png","us.png",
         "be.png","cn.png","fr.png","is.png",
-        "nl.png","pt.png","se.png",
-    ]
+        "nl.png","pt.png","se.png"
+    ];
 
 }(typeof exports === "undefined" ? this.Setup = {} : exports));
