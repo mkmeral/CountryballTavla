@@ -1,49 +1,50 @@
-<DOCTYPE! <!DOCTYPE html>
+<DOCTYPE! html>
 <html>
 <head>
     
     <title>Countryball Backgammon</title>
-    
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/style.css" />
     
 </head>
 <body>
-    <section id="top left">
-        <div id="decoration top left">
-            <img src="/public/images/EarthCountryball.png" alt="The Earth Flag">
-            <h1> <span class="title">Countryball Backgammon</span>
+    <section class="topleft">
+        <div>
+            <img  src="/images/EarthCountryball.png" alt="The Earth Flag" class="logo">
+            <h1> <span class="title">Countryball <br> Backgammon</span>
             </h1>          
         </div>
     </section>
 
-    <section id = "left">
-        <div id = "info brackets">
+    <section class = "info">
+        <div >
             <ul>
-                <li> <span class="information">Number of continuing games</span> </li> 
-                <li> <span class="information">Number of online users</span> </li>
-                <li> <span class="information">Average waiting time</span> </li>
+                <li> <span>Number of continuing games</span> </li> 
+                <li> <span>Number of online users</span> </li>
+                <li> <span>Average waiting time</span> </li>
         </div>
     </section>
 
-    <section id = "right">
-        <div id = "choosing country">
-            <form action="/leftselection" method="get">
-             <button type="submit" class="choose" id="previous">previous</button>
-            </form>
-            <img src="<%= defaultImage %>" class="choose">
-            <form action="/rightselection" method="get">
-                <button type="submit" class="choose" id="next">next</button>
-            </form>
+    <section class = "right">
+        <div class = "choosingcountry">
+            
+            <img src="/images/previoussign.svg" alt="Previous Sign" id="previous">
+            <img id="default"  src="<%= defaultImage %>" >
+            <img src="/images/nextsign.svg" alt="Next Sign" id="next">
+            
         </div>
-        <div id="play and how to play">
+        <div id="playandhowtoplay">
             <form action="/start" method="get">
                 <button type="submit" class="primary" id="play">Play</button>
             </form>
+
+            
             <form action="/howtoplay" method="get">
                 <button type="submit" class="primary" id="howto">How To Play</button>
             </form>
         </div>
     </section>
+    <div class="groot">Developed by Groot Studios © </div>
     <div class="modal">
         <? modal ?>
     </div>
