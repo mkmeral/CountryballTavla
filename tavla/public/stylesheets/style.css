@@ -1,8 +1,98 @@
+/*
+style for splash screen
+*/
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #0032ff;
 }
 
-a {
-  color: #00B7FF;
+.topleft{
+  position:relative;
+  right: 40;
+  bottom: 20
 }
+
+.logo{
+  width: 220px;
+  height: 200px
+
+}
+.title{
+ font-family: 'Staatliches', cursive;
+  font-size: 70;
+  position: relative;
+  left: 230;
+  bottom: 210;
+  color: #ff9933
+}
+.right{
+  position:absolute;
+  left: 560;
+  
+  
+}
+#default{
+  width: 200;
+  position:relative;
+  left: 250;
+  bottom: 100 
+}
+#previous{
+  width: 80;
+  position:relative;
+  left: 260;
+  bottom: 143; 
+}
+#next{
+  width: 80;
+  position:relative;
+  left: 245;
+  bottom: 138; 
+}
+.primary{
+  font-size: 30;
+  position:relative;
+  left: 350;
+  bottom: 100;
+  background-color: #ff9933;
+  color: #0032ff;
+  border: 0px;
+}
+#play{
+  position:relative;
+  left: 350;
+  width: 180
+}
+.info{
+  font-family: 'Staatliches', cursive;
+  font-size: 30;
+  position: absolute;
+  color:#ff9933
+  
+}
+.primary:hover{
+  background-color: bisque;  
+}
+#howto:hover{
+    cursor: help;
+}
+#play:hover{
+    cursor: pointer;
+}
+#next:hover{
+      cursor: pointer;
+}
+#previous:hover{
+      cursor: pointer;
+}
+.groot{
+    position: relative;
+    font-family: 'Staatliches', cursive;
+    font-size: 20;
+    left: 30;
+    top: 270;
+}
+/*
+style for game screen
+*/

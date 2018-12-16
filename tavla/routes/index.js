@@ -24,4 +24,14 @@ router.get('/', function(req, res, next) {
       });
 });
 
+
+/* GET home page. */
+router.get('/game', function (req, res, next) {
+  talks =['fuck you', 'lol', 'asdsad'];
+  res.render('game', 
+  { 
+    talks: talks });
+    
+});
+
 module.exports = router;
