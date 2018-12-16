@@ -1,5 +1,6 @@
+var config = require('./public/javascripts/config.js');
 var board = function () {
-    this.board = [6,6,6,6,6,8,8,8,13,13,13,13,13,24,24];
+    this.board = config.DEFAULT_BOARD;
     this.pips = 167;
     this.moves=[];    // {from: x, to: y} or {message: x, played: false};
 };
@@ -46,6 +47,7 @@ board.prototype.move = function (move, dice, p2Board) {
             if(blocked)
                 p2Board[blocked] = 25;
 
+            this.moves.push(move);
             return true;
         }
     });

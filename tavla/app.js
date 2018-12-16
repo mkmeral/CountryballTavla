@@ -12,7 +12,6 @@ var PlayerClass = require('./player.js');
 var app = express();
 port = process.argv[2];
 var server = http.createServer(app);
-
 var messages = require("./public/javascripts/messages");
 
 // view engine setup
@@ -52,8 +51,8 @@ wss.on("on", function (ws) {
     ws.id = connectionId++;
     player = new PlayerClass(ws);
 
-    currentGame.addPlayer(player)
-    stats.websockets[ws.id] = currentGame;;
+    currentGame.addPlayer(player);
+    stats.websockets[ws.id] = currentGame;
 
     // If it's the first user, tell to wait
     if (currentGame.p1 === player){
