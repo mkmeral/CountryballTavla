@@ -169,8 +169,8 @@
     </main>
     <div class="modal" id="talks">
         <% talks.forEach(function(talk){ %>
-            <div class="talk" onclick="sendTalk(<% talk.id %>)">
-                <h3><% talk.text %></h3>
+            <div class="talk" onclick="sendTalk(<%= talk.id %>)">
+                <h3><%= talk.text %></h3>
             </div>
         <% }) %>
         <button type="submit" class="exit" name="exit">Exit</button>

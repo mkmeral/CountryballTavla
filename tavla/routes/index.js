@@ -1,13 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var ejs = require('ejs');
-/* GET game page */
-// TODO: Game Variables
-router.get('/game', function(req, res, next) {
+var messages = require('./../public/javascripts/messages');
+
+
+/* GET game page. */
+router.get('/game', function (req, res, next) {
     res.render('game',
         {
-
+            talks: messages.MESSAGES
         });
+
 });
 
 /* GET home page. */
@@ -25,13 +28,5 @@ router.get('/', function(req, res, next) {
 });
 
 
-/* GET home page. */
-router.get('/game', function (req, res, next) {
-  talks =['fuck you', 'lol', 'asdsad'];
-  res.render('game', 
-  { 
-    talks: talks });
-    
-});
 
 module.exports = router;

@@ -167,7 +167,7 @@ wss.on("on", function (ws) {
 
         if(gameObj.gameState < 5){
             let m = messages.O_FINISH_CODE;
-            m.data = 3
+            m.data = 3;
             opponent.send(JSON.stringify(m));
         }
     });
