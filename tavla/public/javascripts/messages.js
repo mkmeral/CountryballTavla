@@ -49,6 +49,16 @@
     };
     exports.S_INVALID = JSON.stringify(exports.O_INVALID);
 
+
+    /*
+     * Server to Client : Requested move is valid, can make the animation
+     */
+    exports.T_VALID = "VALID";
+    exports.O_VALID = {
+        type: exports.T_VALID
+    };
+    exports.S_VALID = JSON.stringify(exports.O_VALID);
+
     /*
      * Server to Client: Game is ready
      * If player is to start, data will contain dice info

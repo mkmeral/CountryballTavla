@@ -123,16 +123,26 @@ wss.on("on", function (ws) {
                         let lost = message.O_FINISH_CODE;
                         lost.data = 2;
 
-                        // Send won and lost messages depending on winner
+                        /*
+                         * Send won and lost messages depending on winner
+                         * Close the websockets
+                         */
                         if(finished===1){
                             gameObj.p1.con.send(JSON.stringify(won));
                             gameObj.p2.con.send(JSON.stringify(lost));
+                            gameObj.p1.con.close();
+                            gameObj.p2.con.close();
                         }else{
                             gameObj.p1.con.send(JSON.stringify(lost));
                             gameObj.p2.con.send(JSON.stringify(won));
+                            gameObj.p1.con.close();
+                            gameObj.p2.con.close();
                         }
                     }
                 }
+
+                // Tell the player that the move is valid and played
+                ws.send(messages.S_VALID);
 
                 // Relay the valid move, also by adding new thrown dice
                 let m = messages.O_RELAY_MOVE;
@@ -146,7 +156,22 @@ wss.on("on", function (ws) {
                 ws.send(messages.S_INVALID);
             }
         }
-    })
+    });
+
+    ws.on("close", function (message) {
+        // If User closes the websocket let the opponent know player is surrendered.
+        let gameObj = stats.websockets[ws.id];
+        let player = gameObj.returnPlayer(ws);
+        let opponent = gameObj.p1;
+        if(opponent === player)
+            opponent = gameObj.p2;
+
+        if(gameObj.gameState < 5){
+            let m = messages.O_FINISH_CODE;
+            m.data = 3
+            opponent.send(JSON.stringify(m));
+        }
+    });
 });
 
 server.listen(port);
