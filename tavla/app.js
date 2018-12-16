@@ -45,12 +45,13 @@ app.use(function(err, req, res, next) {
 var wss = new websocket.Server({server});
 var currentGame = new Game(stats.games++, new Date().getTime());
 var connectionId = 0;
-
+console.log("------");
 wss.on("on", function (ws) {
 
     ws.id = connectionId++;
     player = new PlayerClass(ws);
 
+    console.log(" -------- New Websocket :P, with id %s", ws.id);
     currentGame.addPlayer(player);
     stats.websockets[ws.id] = currentGame;
 
@@ -77,6 +78,7 @@ wss.on("on", function (ws) {
     if(currentGame.isFull()){
         currentGame = new Game(stats.games++, new Date().getTime());
     }
+
 
     ws.on("message", function (message) {
         let gameObj = stats.websockets[ws.id];

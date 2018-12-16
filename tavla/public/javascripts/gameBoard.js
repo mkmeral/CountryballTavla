@@ -1,7 +1,7 @@
 function GameBoard(ws){
     this.ws = ws;
     this.user = {
-        board: config.DEFAULT_BOARD,
+        board: Setup.DEFAULT_BOARD,
         cball: null,
         imgs: [],
     };
@@ -20,7 +20,7 @@ function GameBoard(ws){
 
         // Setup opponent board
         // It should be on the other side
-        config.DEFAULT_BOARD.forEach(function (checker) {
+        Setup.DEFAULT_BOARD.forEach(function (checker) {
             this.opponent.board.push(25-checker);
         });
 
@@ -31,7 +31,7 @@ function GameBoard(ws){
             this.user.imgs.push(checkerEelement);
             $("#"+checker).appendChild(checkerEelement);
         });
-        opponent.board.forEach(function (checker) {
+        this.opponent.board.forEach(function (checker) {
             let checkerEelement = $("<img>");
             checkerElement.src = opponent.cball;
             this.opponent.imgs.push(checkerEelement);
@@ -66,11 +66,11 @@ function GameBoard(ws){
         element = $(element);
         newParent= $(newParent);
 
-        var oldOffset = element.offset();
+        let oldOffset = element.offset();
         element.appendTo(newParent);
-        var newOffset = element.offset();
+        let newOffset = element.offset();
 
-        var temp = element.clone().appendTo('body');
+        let temp = element.clone().appendTo('body');
         temp.css({
             'position': 'absolute',
             'left': oldOffset.left,
@@ -104,14 +104,14 @@ function GameBoard(ws){
     };
 
     this.sendMessage = function (id) {
-        let m = messages.O_SEND_MESSAGE;
+        let m = Messages.O_SEND_MESSAGE;
         m.data = id;
         this.ws.send(JSON.stringify(m));
     };
 
     this.submitMove = function (move) {
         this.submittedMove = move;
-        let m = messages.O_REQUEST_MOVE;
+        let m = Messages.O_REQUEST_MOVE;
         m.data = this.submittedMove;
         this.ws.send(JSON.stringify(m));
     };
@@ -119,8 +119,8 @@ function GameBoard(ws){
     this.setTime = function () {
         let t = $("#time");
         t.empty();
-        var seconds = Math.floor((milli / 1000) % 60);
-        var minutes = Math.floor((milli / (60 * 1000)) % 60);
+        let seconds = Math.floor((milli / 1000) % 60);
+        let minutes = Math.floor((milli / (60 * 1000)) % 60);
 
         t.innerText = minutes + ":" +seconds;
     };
@@ -130,9 +130,33 @@ function GameBoard(ws){
         // TODO: Implement display part
     };
 
-    this.highlighAvailable = function () {
-        // TODO: İmplememt;
-    }
+    this.available = function () {
+        let h = [];
+        this.user.board.forEach(function (position) {
+            if(!h.includes(position)){
+                if(!this.opponent.board.includes(position-dice[0]) || !this.opponent.board.includes(position-dice[0]) || !this.opponent.board.includes(position-(dice[0]+dice[1])))
+                    h.push(position);
+            }
+        });
+    };
+
+    this.availableFrom = function (position) {
+        let h = [];
+
+        if(!this.opponent.board.includes(position-dice[0]))
+            h.push(position-dice[0]);
+        if(!this.opponent.board.includes(position-dice[1]))
+            h.push(position-dice[1]);
+        if(!this.opponent.board.includes(position-(dice[0]+dice[1])))
+            h.push(position-(dice[1]+dice[0]));
+
+        return h;
+    };
+
+    this.surrender = function () {
+        this.ws.send(Messages.S_SURRENDER);
+    };
+
     /*
      * Setup game
      * move
@@ -158,20 +182,32 @@ function GameBoard(ws){
 }
 
 (function setup() {
-    ws = new WebSocket(config.WEB_SOCKET_URL);
+    alert("asdsad");
+    let ws = new WebSocket(Setup.WEB_SOCKET_URL);
 
     gBoard = new GameBoard(ws);
 
-    gBoard.setMessage("Trying to find an opponent!");
 
+    ws.onopen = function(){
+        console.log("open");
+    };
+    alert("m");
+    gBoard.setMessage("Trying to find an opponent!");
     ws.onmessage = function (event) {
 
         let msg = JSON.parse(event);
 
-        if(msg.type === messages.T_RELAY_MESSAGE)
-            gBoard.setMessageFor(messages.MESSAGES[msg.data], 3000);
+        if(msg.type === Messages.T_READY){
+            gBoard.setup(msg.data.userCBall, (msg.data.userCBall === msg.data.opponentCBall) ? "earth.png" : msg.data.opponentCBall);
+            gBoard.clearMessage();
+            if(msg.data.dice !== null)
+                gBoard.setDice(msg.data.dice);
+        }
 
-        if(msg.type === messages.T_FINISH_CODE){
+        if(msg.type === Messages.T_RELAY_MESSAGE)
+            gBoard.setMessageFor(Messages.MESSAGES[msg.data], 3000);
+
+        if(msg.type === Messages.T_FINISH_CODE){
             switch (msg.data) {
                 case 1:
                     gBoard.setMessageFor("YOU WON!", 5000, function () {
@@ -196,11 +232,15 @@ function GameBoard(ws){
             }
         }
 
-        if(msg.type === messages.T_VALID){
+        if(msg.type === Messages.T_VALID){
             gBoard.makeMove(true, gBoard.submittedMove.from, gBoard.submittedMove.to);
         }
 
-        if(msg.type === messages.T_RELAY_MOVE){
+        if(msg.type === Messages.T_WAIT){
+            alert("WAIT");
+        }
+
+        if(msg.type === Messages.T_RELAY_MOVE){
             gBoard.makeMove(false, msg.data.move.from, msg.data.move.to);
             gBoard.setMessageFor("Your Turn!, 1000", function () {
                 gBoard.setDice(msg.data.dice);
@@ -208,7 +248,7 @@ function GameBoard(ws){
             });
         }
 
-        if(msg.type === messages.T_INVALID){
+        if(msg.type === Messages.T_INVALID){
             gBoard.setMessageFor("Invalid Move!\nTry again!, 1000", function () {
                 gBoard.setDice(msg.data.dice);
                 gBoard.highlighAvailable();
