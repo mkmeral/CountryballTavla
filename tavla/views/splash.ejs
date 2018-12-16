@@ -19,9 +19,9 @@
     <section class = "info">
         <div >
             <ul>
-                <li> <span>Number of continuing games</span> </li> 
-                <li> <span>Number of online users</span> </li>
-                <li> <span>Average waiting time</span> </li>
+                <li> <h2 class="stat"> <%= games %> &nbsp;</h2> <span>Number of continuing games</span> </li>
+                <li> <h2 class="stat"> <%= users%> &nbsp;</h2><span>Number of online users</span> </li>
+                <li> <h2 class="stat"> <%= avgWait%> &nbsp;</h2><span>Average waiting time</span> </li>
         </div>
     </section>
 
@@ -34,7 +34,7 @@
             
         </div>
         <div id="playandhowtoplay">
-            <form action="/start" method="get">
+            <form action="/game" method="get">
                 <button type="submit" class="primary" id="play">Play</button>
             </form>
 
