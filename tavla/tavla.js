@@ -74,4 +74,4 @@ Game.prototype.returnPlayer = function(con){
     return this.p2;
 };
 
-exports.Game = Game;
+exports.game = Game;
