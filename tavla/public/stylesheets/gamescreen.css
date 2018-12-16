@@ -79,18 +79,18 @@ body{
     background-image: url("/images/point1.svg");
 }*/
 .user{
-    position: absolute;
-    left: 1300px;
-    bottom: 680px;
+    position: relative;
+    left: 60px;
+    bottom: 900px;
     color:#0033cc;
     font-size: 40px;
     font-family: 'Staatliches', cursive;
 
 }
 .opponent{
-    position: absolute;
-    top: -25px;
-    left: 20px;
+    position: relative;
+    bottom: 726px;
+    left: 1220px;
     color:#0033cc;
     font-size: 40px;
     font-family: 'Staatliches', cursive;
@@ -106,24 +106,24 @@ body{
 
 .topleft{
     position:relative;
-    bottom: 645px;
+    bottom: 929px;
     left: 5px;
     display: inline;
 }
 .topright{
     position:relative;
-    bottom: 1353px;
+    bottom: 1637px;
     left: 780px;
     display: inline;
 }
 .bottomright{
     position:relative;
-    bottom: 1355px;
+    bottom: 1639px;
     left: 780px;
 }
 .bottomleft{
     position:relative;
-    bottom: 647px;
+    bottom: 931px;
     left: 5px;
 }
 

@@ -3,6 +3,9 @@
 <head>
     
     <title>Countryball Backgammon</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/javascripts/redirect.js"></script>
+    <script src="/javascripts/config.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/style.css" />
     
@@ -22,6 +25,7 @@
                 <li> <h2 class="stat"> <%= games %> &nbsp;</h2> <span>Number of continuing games</span> </li>
                 <li> <h2 class="stat"> <%= users%> &nbsp;</h2><span>Number of online users</span> </li>
                 <li> <h2 class="stat"> <%= avgWait%> &nbsp;</h2><span>Average waiting time</span> </li>
+                <li> <h2 class="stat" id="comeback"> </h2><span>Times you have gotten here</span> </li>
         </div>
     </section>
 
@@ -29,13 +33,13 @@
         <div class = "choosingcountry">
             
             <img src="/images/previoussign.svg" alt="Previous Sign" id="previous">
-            <img id="default"  src="<%= defaultImage %>" >
+            <img id="countryballdefault"  src="<%= defaultImage %>" >
             <img src="/images/nextsign.svg" alt="Next Sign" id="next">
             
         </div>
         <div id="playandhowtoplay">
             <form action="/game" method="get">
-                <button type="submit" class="primary" id="play">Play</button>
+                <button type="submit" class="primary" id="play" onclick="window.location.href='/game'">Play</button>
             </form>
 
             
@@ -44,7 +48,7 @@
             </form>
         </div>
     </section>
-    <div class="groot">Developed by Groot Studios © </div>
+    
     <div class="modal">
         <? modal ?>
     </div>
