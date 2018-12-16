@@ -54,14 +54,12 @@ Game.prototype.move = function (p, move) {
     let result = false;
     if(p === this.p1 && this.states[this.gameState] === 5){
         result = this.p1.board.move(move, this.dice, this.p2.board);
-        if(result && move.to<0){}
-            this.gameState = "WON 1";
+
         if(result)
             this.gameState = "WAIT 2";
     }else if(p === this.p2 && this.states[this.gameState] === 6){
         result = this.p2.board.move(move, this.dice, this.p1.board);
-        if(result && move.to<0){}
-            this.gameState = "WON 2";
+
         if(result)
             this.gameState = "WAIT 1";
     }
