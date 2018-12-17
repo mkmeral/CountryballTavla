@@ -49,54 +49,10 @@ $("#next").click(function () {
     $("#countryballdefault").attr("src", "/images/cball/" + Setup.COUNTRYBALLS[(++i) % Setup.COUNTRYBALLS.length]);  
 
 });
-/*
-    function setCookie(meral, cookievalue, exdays) {
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-        var expires = "expires=" + d.toUTCString();
-        document.cookie = meral + "=" + cookievalue + ";" + expires + ";path=/";
-    };
-
-    function getCookie(meral) {
-        var name = meral + "=";
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var ca = decodedCookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-            }
-        }
-        return "";
-    };
-
-    function returncookie() {
-        document.getElementById("comeback").textContent = getCookie("cookievalue");
-    }
-
-    function checkCookie() {
-        var times = getCookie("cookievalue");
-        if (times != "") {
-            alert("You have been here " + times + " times.");
-        } else {
-            times = prompt("This is your first time in here!", "");
-            if (times != 0 && times != null) {
-                setCookie("cookievalue", times, 365);
-            }
-        }
-    }
-    $.cookie("cookie1", "1", { path: '/' });
-    alert($.cookie("cookie1"));
-    */
 
 checkCookie();
 });
-/*
-idcomebackin innerhtmline o sayiyi yaz her geldiginde cookie degerini 1 arttir
-*/
+
 
 
 
